@@ -60,7 +60,7 @@ async def promote(interaction: discord.Interaction, roblox_username: str, old_ra
         promotion_db[roblox_username] = []
     promotion_db[roblox_username].append(promotion_entry)
     avatar_url = await get_roblox_avatar(roblox_username)
-    embed = discord.Embed(title=f"ð Promotion for {roblox_username}", color=discord.Color.green())
+    embed = discord.Embed(title=f"🎉Promotion for {roblox_username}", color=discord.Color.green())
     if avatar_url:
         embed.set_thumbnail(url=avatar_url)
     embed.add_field(name="Previous Rank", value=old_rank, inline=True)
@@ -83,7 +83,7 @@ async def promotions(interaction: discord.Interaction, roblox_username: str):
         await interaction.followup.send(embed=embed)
         return
     user_promotions = promotion_db[roblox_username]
-    embed = discord.Embed(title=f"ð Promotion History for {roblox_username}", description=f"Total promotions: {len(user_promotions)}", color=discord.Color.blue())
+    embed = discord.Embed(title=f"📜Promotion History for {roblox_username}", description=f"Total promotions: {len(user_promotions)}", color=discord.Color.blue())
     if avatar_url:
         embed.set_thumbnail(url=avatar_url)
     for i, promo in enumerate(reversed(user_promotions[-5:])):
