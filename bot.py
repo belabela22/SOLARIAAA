@@ -94,4 +94,5 @@ async def promotions(interaction: discord.Interaction, roblox_username: str):
         embed.set_footer(text=f"Showing latest 5 of {len(user_promotions)} promotions")
     await interaction.followup.send(embed=embed)
 
-bot.run(os.getenv("MTM1OTUyMjc0OTA5MzI1MzE4Mg.Ge6WCl.qPrDK2btcXEI-rvqTJE1wOrFje2sctHAQ2dBDM"))
+import os
+bot.run(os.getenv("DISCORD_TOKEN"))
