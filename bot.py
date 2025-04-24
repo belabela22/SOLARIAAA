@@ -3,6 +3,8 @@ from discord import app_commands
 from discord.ext import commands
 import datetime
 import aiohttp
+from flask import Flask
+import threading
 import os
 
 intents = discord.Intents.default()
@@ -93,6 +95,18 @@ async def promotions(interaction: discord.Interaction, roblox_username: str):
     if len(user_promotions) > 5:
         embed.set_footer(text=f"Showing latest 5 of {len(user_promotions)} promotions")
     await interaction.followup.send(embed=embed)
+    # Flask app to bind a port and keep Render happy
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+def run_web():
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port)
+
+threading.Thread(target=run_web).start()
 
 import os
 bot.run(os.getenv("DISCORD_TOKEN"))
